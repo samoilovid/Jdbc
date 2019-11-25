@@ -1,6 +1,7 @@
-package ru.itpark.model.util;
+package ru.itpark.util;
 
-import ru.itpark.model.model.House;
+import ru.itpark.exception.DataAccessException;
+import ru.itpark.model.House;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -21,6 +22,17 @@ public class JdbcTemplate {
                 result.add(mapper.map(resultSet));
             }
             return result;
+        }
+    }
+    public static int executeUpdate(String url, String sql, PreparedStatementSetter setter) {
+        try (
+                Connection connection = DriverManager.getConnection(url);
+                PreparedStatement statement = connection.prepareStatement(sql);
+        ) {
+            setter.set(statement);
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataAccessException(e);
         }
     }
 }

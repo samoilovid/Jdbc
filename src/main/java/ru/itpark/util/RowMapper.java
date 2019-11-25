@@ -1,6 +1,6 @@
-package ru.itpark.model.util;
+package ru.itpark.util;
 
-import ru.itpark.model.model.House;
+import ru.itpark.model.House;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

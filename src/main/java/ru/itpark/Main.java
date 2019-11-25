@@ -1,7 +1,7 @@
-package ru.itpark.model;
+package ru.itpark;
 
-import ru.itpark.model.model.House;
-import ru.itpark.model.service.HouseServices;
+import ru.itpark.model.House;
+import ru.itpark.service.HouseServices;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,7 +13,11 @@ public class Main {
         houses = services.getAll();
         System.out.println(houses);
 
+        System.out.println("----------");
 
+        services.insert(1_000_000, 1, "Московский", "Яшлек");
+        houses = services.getAll();
+        System.out.println(houses);
     }
 }
 
